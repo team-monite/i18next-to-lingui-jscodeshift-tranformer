@@ -1,4 +1,4 @@
-# i18next to LinguiJS js-codeshift Transformer
+# i18next to LinguiJS jscodeshift Transformer
 
 This transformer integrates with [jscodeshift](https://github.com/facebook/jscodeshift) to help migrate
 from [i18next](https://www.i18next.com/) `t(...)` function to [Lingui](https://lingui.dev/) `t` literal template.
