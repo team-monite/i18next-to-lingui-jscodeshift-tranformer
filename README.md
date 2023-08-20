@@ -87,7 +87,7 @@ The _i18next_ `Trans` component is not supported and should be manually refactor
 3. **Run the following command in the terminal:**
    ```bash
    jscodeshift --extensions=tsx,ts --parser=tsx \
-   -t ./replace-i18n-next-with-lingui-t-macro-transformer.ts \
+   -t "https://raw.githubusercontent.com/team-monite/i18next-to-lingui-jscodeshift-tranformer/main/replace-i18n-next-with-lingui-t-macro-transformer.ts" \
    --i18n-source-file ./i18n/en.json ./src/
    ```
    where `./i18n/en.json` is the path to the i18next translation source and `./src/` is the directory containing the
@@ -149,11 +149,11 @@ const myRegularFunction = () => { // doesn't look like a React Component or Hook
 
 ### Usage Guide
 
-- Navigate to the directory of the package you want to migrate from i18next to Lingui.
+- Navigate to the directory of the package you want to migrate from i18next to LinguiJS.
 - Run in terminal:
   ```bash
   jscodeshift --extensions=tsx,ts --parser=tsx --ignore-pattern="*.test.{ts,tsx}" \
-  -t ../i18next-to-lingui-jscodehift-transformer/replace-lingui-t-macro-with-use-lingui-transformer.ts \
+  -t "https://raw.githubusercontent.com/team-monite/i18next-to-lingui-jscodeshift-tranformer/main/replace-lingui-t-macro-with-use-lingui-transformer.ts" \
   ./src/
   ```
   where `./src/` is the directory with the source files to be transformed to use `useLingui()`.
