@@ -1,8 +1,7 @@
-import {
+import type {
   ASTPath,
   ImportDeclaration,
   ImportSpecifier,
-  TaggedTemplateExpression,
   Transform,
 } from 'jscodeshift';
 
@@ -70,7 +69,7 @@ const transform: Transform = (file, api) => {
 
   // Find all functions which are React components or hooks and use `t`
   const reactFunctionsWithTUsage = root
-    .find(TaggedTemplateExpression, {
+    .find(j.TaggedTemplateExpression, {
       tag: { type: 'Identifier', name: 't' },
     })
     .map((path) => {

@@ -1,5 +1,5 @@
 import fs from 'fs';
-import {
+import type {
   API,
   ArrowFunctionExpression,
   ASTPath,
@@ -11,7 +11,6 @@ import {
   ImportSpecifier,
   JSCodeshift,
   Options,
-  TaggedTemplateExpression,
 } from 'jscodeshift';
 import path from 'path';
 
@@ -452,7 +451,7 @@ const curryingOfTMacro = (source: string, j: JSCodeshift) => {
 
   // Find all functions which are React components or hooks and use `t`
   const reactFunctionsWithTUsage = root
-    .find(TaggedTemplateExpression, {
+    .find(j.TaggedTemplateExpression, {
       tag: { type: 'Identifier', name: 't' },
     })
     .map((path) => {

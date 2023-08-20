@@ -1,10 +1,15 @@
-import jscodeshift, { FileInfo, ImportSpecifier } from 'jscodeshift';
-import { ExpressionKind } from 'ast-types/gen/kinds';
+import type {
+  FileInfo,
+  ImportSpecifier,
+  API,
+  Literal,
+  TemplateLiteral,
+  ObjectExpression,
+  TemplateElement,
+} from 'jscodeshift';
+import type { ExpressionKind } from 'ast-types/gen/kinds';
 
-export default function (
-  fileInfo: FileInfo,
-  api: { jscodeshift: typeof jscodeshift }
-) {
+export default function (fileInfo: FileInfo, api: API) {
   const j = api.jscodeshift;
 
   // Get the root node of the file
@@ -76,8 +81,8 @@ export default function (
     })
     .replaceWith((path) => {
       const [message, params] = path.node.arguments as [
-        jscodeshift.Literal | jscodeshift.TemplateLiteral,
-        jscodeshift.ObjectExpression,
+        Literal | TemplateLiteral,
+        ObjectExpression,
       ];
       const messageValue =
         message.type === 'TemplateLiteral'
@@ -90,7 +95,7 @@ export default function (
           : [];
 
       const expressions: ExpressionKind[] = [];
-      const quasis: jscodeshift.TemplateElement[] = [];
+      const quasis: TemplateElement[] = [];
 
       parts.forEach((part, index) => {
         if (part.startsWith('{') && part.endsWith('}')) {
